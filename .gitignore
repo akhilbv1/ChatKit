@@ -3,6 +3,9 @@
 *.ap_
 *.jar
 
+#Allow gradle-wrapper
+!gradle-wrapper.jar
+
 # files for the dex VM
 *.dex
 
