@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.stfalcon.chatkit.sample"
-        minSdkVersion 14
+        minSdkVersion 19
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -28,7 +28,7 @@ ext {
     picassoVersion = '2.5.2'
     circleImageViewVersion = '2.2.0'
     shapeImageViewVersion = '0.9.3'
-    circleindicatorVersion = '1.2.2@aar'
+    circleindicatorVersion = 'feature~update_to_androidx-SNAPSHOT'
 }
 
 dependencies {
@@ -52,6 +52,5 @@ dependencies {
     implementation "com.github.siyamed:android-shape-imageview:$shapeImageViewVersion"
 
     //Utils
-    implementation "me.relex:circleindicator:$circleindicatorVersion"
-
+    implementation "com.github.B-greg:CircleIndicator:$circleindicatorVersion"
 }
