@@ -10,7 +10,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha03'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha04'
         //classpath 'com.novoda:bintray-release:0.8.1'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -21,11 +21,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         maven { url 'https://jitpack.io' }
+        google()
     }
 }
 
@@ -34,5 +31,5 @@ task clean(type: Delete) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.9-rc-2' //version required
+    gradleVersion = '4.9' //version required
 }
