@@ -31,7 +31,7 @@ android {
 
 ext {
     supportVersion = '1.0.0-beta01'
-    flexboxVersion = '1.0.0'
+    flexboxVersion = '1.1.0-beta1'
 }
 
 dependencies {
