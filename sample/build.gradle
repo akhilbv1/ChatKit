@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.stfalcon.chatkit.sample"
         minSdkVersion 19
@@ -25,7 +24,8 @@ android {
 }
 
 ext {
-    supportVersion = '1.0.0-beta01'
+    supportVersion = '1.0.0-rc02'
+    materialVersion = '1.0.0-rc01'
     picassoVersion = '2.5.2'
     circleImageViewVersion = '2.2.0'
     shapeImageViewVersion = '0.9.3'
@@ -42,8 +42,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation "androidx.appcompat:appcompat:$supportVersion"
-    implementation "androidx.cardview:cardview:1.0.0-rc01"
-    implementation "com.google.android.material:material:$supportVersion"
+    implementation "androidx.cardview:cardview:1.0.0-rc02"
+    implementation "com.google.android.material:material:$materialVersion"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
