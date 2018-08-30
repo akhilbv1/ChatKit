@@ -51,7 +51,7 @@ public class DialogsList extends RecyclerView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layout = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         SimpleItemAnimator animator = new DefaultItemAnimator();
 
         setLayoutManager(layout);
@@ -91,7 +91,7 @@ public class DialogsList extends RecyclerView {
         itemAnimator.setSupportsChangeAnimations(false);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),
-                LinearLayoutManager.VERTICAL, reverseLayout);
+                RecyclerView.VERTICAL, reverseLayout);
 
         setItemAnimator(itemAnimator);
         setLayoutManager(layoutManager);
