@@ -48,6 +48,10 @@ public abstract class DemoMessagesActivity extends AppCompatActivity
             public void loadImage(ImageView imageView, String url, Object payload) {
                 Picasso.with(DemoMessagesActivity.this).load(url).into(imageView);
             }
+            @Override
+            public void loadImage(ImageView imageView, String url, String name) {
+                Picasso.with(DemoMessagesActivity.this).load(url).into(imageView);
+            }
         };
     }
 

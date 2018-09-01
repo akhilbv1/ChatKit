@@ -30,6 +30,11 @@ public abstract class DemoDialogsActivity extends AppCompatActivity
             public void loadImage(ImageView imageView, String url, Object payload) {
                 Picasso.with(DemoDialogsActivity.this).load(url).into(imageView);
             }
+
+            @Override
+            public void loadImage(ImageView imageView, String url, String name) {
+                Picasso.with(DemoDialogsActivity.this).load(url).into(imageView);
+            }
         };
     }
 

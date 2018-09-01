@@ -24,6 +24,7 @@ import android.widget.ImageView;
  */
 public interface ImageLoader {
 
-    void loadImage(ImageView imageView, @Nullable String url, @Nullable Object payload);
+    void loadImage(ImageView imageView, String url, String name);
+    void loadImage(ImageView imageView, String url);
 
 }
