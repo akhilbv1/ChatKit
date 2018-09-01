@@ -142,7 +142,9 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public boolean containsId(String id) {
         boolean exists = false;
         for (int i = 0; i < items.size(); i++) {
-            exists = items.get(i).getId().equals(id);
+            if (items.get(i).getId().equals(id)) {
+                exists = true;
+            }
         }
         return exists;
     }
