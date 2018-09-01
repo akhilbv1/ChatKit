@@ -135,9 +135,24 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     }
 
     /**
+     * check if id is in List
+     * @param id dialog id
+     * @return true if Dialog exists. False if it not Exists
+     */
+    public boolean containsId(String id) {
+        boolean exists = false;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                exists = true;
+            }
+        }
+        return exists;
+    }
+
+    /**
      * remove item with id
      *
-     * @param id dialog i
+     * @param id dialog id
      */
     public void deleteById(String id) {
         for (int i = 0; i < items.size(); i++) {
