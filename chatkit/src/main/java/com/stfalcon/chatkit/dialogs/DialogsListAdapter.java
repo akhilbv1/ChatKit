@@ -152,6 +152,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 }
 
                 FilterResults filterResults = new FilterResults();
+                filterResults.count = itemsListFiltered.size();
                 filterResults.values = itemsListFiltered;
                 return filterResults;
             }
