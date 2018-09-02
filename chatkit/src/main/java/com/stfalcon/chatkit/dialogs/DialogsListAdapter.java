@@ -55,7 +55,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         extends RecyclerView.Adapter<DialogsListAdapter.BaseDialogViewHolder> implements Filterable {
 
     protected List<DIALOG> items = new ArrayList<>();
-    private List<DIALOG> itemsListFiltered;
+    private List<DIALOG> itemsListFiltered = items;
     private int itemLayoutId;
     private Class<? extends BaseDialogViewHolder> holderClass;
     private ImageLoader imageLoader;
