@@ -75,7 +75,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public DialogsListAdapter(ImageLoader imageLoader) {
         this(R.layout.item_dialog, DialogViewHolder.class, imageLoader);
-        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     /**
@@ -86,7 +85,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public DialogsListAdapter(@LayoutRes int itemLayoutId, ImageLoader imageLoader) {
         this(itemLayoutId, DialogViewHolder.class, imageLoader);
-        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     /**
@@ -101,7 +99,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         this.itemLayoutId = itemLayoutId;
         this.holderClass = holderClass;
         this.imageLoader = imageLoader;
-        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     @SuppressWarnings("unchecked")
