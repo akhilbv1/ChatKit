@@ -30,6 +30,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
@@ -74,6 +75,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public DialogsListAdapter(ImageLoader imageLoader) {
         this(R.layout.item_dialog, DialogViewHolder.class, imageLoader);
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     /**
@@ -84,6 +86,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public DialogsListAdapter(@LayoutRes int itemLayoutId, ImageLoader imageLoader) {
         this(itemLayoutId, DialogViewHolder.class, imageLoader);
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     /**
@@ -98,6 +101,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         this.itemLayoutId = itemLayoutId;
         this.holderClass = holderClass;
         this.imageLoader = imageLoader;
+        Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
     @SuppressWarnings("unchecked")
