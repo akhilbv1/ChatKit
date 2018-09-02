@@ -30,7 +30,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
@@ -110,7 +109,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         holder.setOnLongItemClickListener(onLongItemClickListener);
         holder.setOnDialogViewLongClickListener(onDialogViewLongClickListener);
         holder.setDatesFormatter(datesFormatter);
-        holder.onBind(items.get(position));
+        holder.onBind(itemsListFiltered.get(position));
     }
 
     @Override
