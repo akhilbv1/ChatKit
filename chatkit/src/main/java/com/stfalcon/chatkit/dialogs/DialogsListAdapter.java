@@ -177,7 +177,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public boolean containsId(String id) {
         boolean exists = false;
         for (int i = 0; i < items.size(); i++) {
-            if (itemsListFiltered.get(i).getId().equals(id)) {
+            if (items.get(i).getId().equals(id)) {
                 exists = true;
             }
         }
@@ -204,7 +204,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @return {@code true} if size is 0, otherwise {@code false}
      */
     public boolean isEmpty() {
-        return itemsListFiltered.isEmpty();
+        return items.isEmpty();
     }
 
     /**
@@ -213,9 +213,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public void clear() {
         if (items != null) {
             items.clear();
-        }
-        if (itemsListFiltered != null) {
-            itemsListFiltered.clear();
         }
         notifyDataSetChanged();
     }
@@ -227,7 +224,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void setItems(List<DIALOG> items) {
         this.items = items;
-        this.itemsListFiltered = this.items;
         notifyDataSetChanged();
     }
 
@@ -243,7 +239,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             }
             int curSize = items.size();
             items.addAll(newItems);
-            itemsListFiltered = items;
             notifyItemRangeInserted(curSize, items.size());
         }
     }
@@ -267,7 +262,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void addItem(int position, DIALOG dialog) {
         items.add(position, dialog);
-        itemsListFiltered = items;
         notifyItemInserted(position);
     }
 
@@ -279,7 +273,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public void moveItem(int fromPosition, int toPosition) {
         DIALOG dialog = items.remove(fromPosition);
         items.add(toPosition, dialog);
-        itemsListFiltered = items;
 
         notifyItemMoved(fromPosition, toPosition);
     }
@@ -295,7 +288,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             items = new ArrayList<>();
         }
         items.set(position, item);
-        itemsListFiltered = items;
         notifyItemChanged(position);
     }
 
@@ -315,8 +307,6 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 break;
             }
         }
-
-        itemsListFiltered = items;
     }
 
     /**
