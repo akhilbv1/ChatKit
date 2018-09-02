@@ -109,7 +109,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         holder.setOnLongItemClickListener(onLongItemClickListener);
         holder.setOnDialogViewLongClickListener(onDialogViewLongClickListener);
         holder.setDatesFormatter(datesFormatter);
-        holder.onBind(itemsListFiltered.get(position));
+        holder.onBind(items.get(position));
     }
 
     @Override
@@ -169,7 +169,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     @Override
     public int getItemCount() {
-        return itemsListFiltered.size();
+        return items.size();
     }
 
     /**
