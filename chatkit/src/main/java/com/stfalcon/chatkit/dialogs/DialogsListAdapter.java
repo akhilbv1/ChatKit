@@ -25,6 +25,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,9 +52,10 @@ import static android.view.View.VISIBLE;
  */
 @SuppressWarnings("WeakerAccess")
 public class DialogsListAdapter<DIALOG extends IDialog>
-        extends RecyclerView.Adapter<DialogsListAdapter.BaseDialogViewHolder> {
+        extends RecyclerView.Adapter<DialogsListAdapter.BaseDialogViewHolder> implements Filterable {
 
     protected List<DIALOG> items = new ArrayList<>();
+    private List<DIALOG> itemsListFiltered;
     private int itemLayoutId;
     private Class<? extends BaseDialogViewHolder> holderClass;
     private ImageLoader imageLoader;
@@ -126,12 +129,44 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         return null;
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    itemsListFiltered = items;
+                } else {
+                    List<DIALOG> filteredList = new ArrayList<>();
+                    for (DIALOG row : items) {
+                        if (row.getDialogName().toLowerCase().contains(charString.toLowerCase()) || row.getId().toLowerCase().equals(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    itemsListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = itemsListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                itemsListFiltered = (ArrayList<DIALOG>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     /**
      * @return size of dialogs list
      */
     @Override
     public int getItemCount() {
-        return items.size();
+        return itemsListFiltered.size();
     }
 
     /**
@@ -142,7 +177,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public boolean containsId(String id) {
         boolean exists = false;
         for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getId().equals(id)) {
+            if (itemsListFiltered.get(i).getId().equals(id)) {
                 exists = true;
             }
         }
@@ -169,7 +204,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @return {@code true} if size is 0, otherwise {@code false}
      */
     public boolean isEmpty() {
-        return items.isEmpty();
+        return itemsListFiltered.isEmpty();
     }
 
     /**
@@ -178,6 +213,9 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public void clear() {
         if (items != null) {
             items.clear();
+        }
+        if (itemsListFiltered != null) {
+            itemsListFiltered.clear();
         }
         notifyDataSetChanged();
     }
@@ -189,6 +227,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void setItems(List<DIALOG> items) {
         this.items = items;
+        this.itemsListFiltered = this.items;
         notifyDataSetChanged();
     }
 
@@ -204,6 +243,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             }
             int curSize = items.size();
             items.addAll(newItems);
+            itemsListFiltered = items;
             notifyItemRangeInserted(curSize, items.size());
         }
     }
@@ -215,7 +255,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void addItem(DIALOG dialog) {
         items.add(dialog);
-        notifyItemInserted(items.size() - 1);
+        itemsListFiltered = items;
+        notifyItemInserted(itemsListFiltered.size() - 1);
     }
 
     /**
@@ -226,6 +267,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     public void addItem(int position, DIALOG dialog) {
         items.add(position, dialog);
+        itemsListFiltered = items;
         notifyItemInserted(position);
     }
 
@@ -237,6 +279,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     public void moveItem(int fromPosition, int toPosition) {
         DIALOG dialog = items.remove(fromPosition);
         items.add(toPosition, dialog);
+        itemsListFiltered = items;
+
         notifyItemMoved(fromPosition, toPosition);
     }
 
@@ -251,6 +295,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
             items = new ArrayList<>();
         }
         items.set(position, item);
+        itemsListFiltered = items;
         notifyItemChanged(position);
     }
 
@@ -270,6 +315,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 break;
             }
         }
+
+        itemsListFiltered = items;
     }
 
     /**
