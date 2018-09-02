@@ -20,7 +20,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -33,13 +32,11 @@ import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
 import com.stfalcon.chatkit.commons.models.IDialog;
-import com.stfalcon.chatkit.commons.models.IDialogCallback;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.utils.DateFormatter;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -191,11 +188,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @param items dialogs list
      */
     public void setItems(List<DIALOG> items) {
-        if (this.items == null) {
-            this.items = new ArrayList<>();
-        }
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new IDialogCallback<>(this.items, items));
-        diffResult.dispatchUpdatesTo(this);
+        this.items = items;
+        notifyDataSetChanged();
     }
 
     /**
@@ -204,12 +198,14 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @param newItems new dialogs list
      */
     public void addItems(List<DIALOG> newItems) {
-        if (items == null) {
-            items = new ArrayList<>();
+        if (newItems != null) {
+            if (items == null) {
+                items = new ArrayList<>();
+            }
+            int curSize = items.size();
+            items.addAll(newItems);
+            notifyItemRangeInserted(curSize, items.size());
         }
-        newItems.addAll(items);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new IDialogCallback<>(items, newItems));
-        diffResult.dispatchUpdatesTo(this);
     }
 
     /**
@@ -229,10 +225,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @param position position in dialogs list
      */
     public void addItem(int position, DIALOG dialog) {
-        ArrayList<DIALOG> newItems = new ArrayList<>(items);
-        newItems.add(position, dialog);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new IDialogCallback<>(items, newItems));
-        diffResult.dispatchUpdatesTo(this);
+        items.add(position, dialog);
+        notifyItemInserted(position);
     }
 
     /**
@@ -256,10 +250,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         if (items == null) {
             items = new ArrayList<>();
         }
-        ArrayList<DIALOG> newItems = new ArrayList<>(items);
-        newItems.add(position, item);
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new IDialogCallback<>(items, newItems));
-        diffResult.dispatchUpdatesTo(this);
+        items.set(position, item);
+        notifyItemChanged(position);
     }
 
     /**
@@ -466,15 +458,15 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     }
 
     /**
-    * @return the position of a dialog in the dialogs list.
-    */
+     * @return the position of a dialog in the dialogs list.
+     */
     public int getDialogPosition(DIALOG dialog) {
         return this.items.indexOf(dialog);
     }
 
     /*
-    * LISTENERS
-    * */
+     * LISTENERS
+     * */
     public interface OnDialogClickListener<DIALOG extends IDialog> {
         void onDialogClick(DIALOG dialog);
     }
@@ -492,8 +484,8 @@ public class DialogsListAdapter<DIALOG extends IDialog>
     }
 
     /*
-    * HOLDERS
-    * */
+     * HOLDERS
+     * */
     public abstract static class BaseDialogViewHolder<DIALOG extends IDialog>
             extends ViewHolder<DIALOG> {
 
