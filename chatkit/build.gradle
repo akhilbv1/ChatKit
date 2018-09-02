@@ -40,4 +40,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$supportVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.google.android:flexbox:$flexboxVersion"
+
+    implementation 'com.orhanobut:logger:2.2.0' // Logger
 }

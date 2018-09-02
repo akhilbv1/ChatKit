@@ -30,6 +30,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -138,9 +139,11 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 if (charString.isEmpty()) {
                     itemsListFiltered = items;
                 } else {
+                    Logger.d("String not empty");
                     List<DIALOG> filteredList = new ArrayList<>();
                     for (DIALOG row : items) {
                         if (row.getDialogName().toLowerCase().contains(charString.toLowerCase()) || row.getId().toLowerCase().equals(charString.toLowerCase())) {
+                            Logger.d("Got Match");
                             filteredList.add(row);
                         }
                     }
