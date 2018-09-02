@@ -169,7 +169,7 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      */
     @Override
     public int getItemCount() {
-        return items.size();
+        return itemsListFiltered.size();
     }
 
     /**
