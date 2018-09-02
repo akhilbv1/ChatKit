@@ -159,7 +159,10 @@ public class DialogsListAdapter<DIALOG extends IDialog>
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                Logger.d(filterResults.count);
+                Logger.d(filterResults.values);
                 itemsListFiltered = (ArrayList<DIALOG>) filterResults.values;
+                Logger.d(itemsListFiltered);
                 notifyDataSetChanged();
             }
         };
