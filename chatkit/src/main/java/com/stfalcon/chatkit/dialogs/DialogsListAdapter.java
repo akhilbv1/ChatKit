@@ -178,13 +178,12 @@ public class DialogsListAdapter<DIALOG extends IDialog>
      * @return true if Dialog exists. False if it not Exists
      */
     public boolean containsId(String id) {
-        boolean exists = false;
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
-                exists = true;
+                return true;
             }
         }
-        return exists;
+        return false;
     }
 
     /**
