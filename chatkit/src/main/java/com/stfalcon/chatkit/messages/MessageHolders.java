@@ -881,7 +881,7 @@ public class MessageHolders {
         public void onBind(MESSAGE message) {
             super.onBind(message);
             if (image != null && imageLoader != null) {
-                imageLoader.loadImage(image, message.getImageUrl(), message);
+                imageLoader.loadImage(image, message.getImageUrl());
             }
 
             if (imageOverlay != null) {
@@ -951,7 +951,7 @@ public class MessageHolders {
         public void onBind(MESSAGE message) {
             super.onBind(message);
             if (image != null && imageLoader != null) {
-                imageLoader.loadImage(image, message.getImageUrl(), message);
+                imageLoader.loadImage(image, message.getImageUrl());
             }
 
             if (imageOverlay != null) {
