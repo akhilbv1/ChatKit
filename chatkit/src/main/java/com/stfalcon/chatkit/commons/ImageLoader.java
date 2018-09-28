@@ -18,6 +18,9 @@ package com.stfalcon.chatkit.commons;
 
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
+import com.stfalcon.chatkit.commons.models.IUser;
+import com.stfalcon.chatkit.commons.models.IDialog;
+import com.stfalcon.chatkit.commons.models.IMessage;
 
 /**
  * Callback for implementing images loading in message list
