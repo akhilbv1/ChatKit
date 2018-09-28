@@ -24,7 +24,9 @@ import android.widget.ImageView;
  */
 public interface ImageLoader {
 
-    void loadImage(ImageView imageView, String url, String name);
+    void loadImage(ImageView imageView, String url, IUser user);
+    void loadImage(ImageView imageView, String url, IDialog room);
+    void loadImage(ImageView imageView, String url, IMessage message);
     void loadImage(ImageView imageView, String url);
 
 }
