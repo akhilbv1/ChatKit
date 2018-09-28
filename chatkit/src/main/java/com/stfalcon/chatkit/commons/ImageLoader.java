@@ -20,7 +20,6 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import com.stfalcon.chatkit.commons.models.IUser;
 import com.stfalcon.chatkit.commons.models.IDialog;
-import com.stfalcon.chatkit.commons.models.IMessage;
 
 /**
  * Callback for implementing images loading in message list
@@ -29,7 +28,6 @@ public interface ImageLoader {
 
     void loadImage(ImageView imageView, String url, IUser user);
     void loadImage(ImageView imageView, String url, IDialog room);
-    void loadImage(ImageView imageView, String url, IMessage message);
     void loadImage(ImageView imageView, String url);
 
 }
