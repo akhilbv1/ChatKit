@@ -139,11 +139,9 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 if (charString.isEmpty()) {
                     itemsListFiltered = items;
                 } else {
-                    Logger.d("String not empty");
                     List<DIALOG> filteredList = new ArrayList<>();
                     for (DIALOG row : items) {
                         if (row.getDialogName().toLowerCase().contains(charString.toLowerCase()) || row.getId().toLowerCase().equals(charString.toLowerCase())) {
-                            Logger.d("Got Match");
                             filteredList.add(row);
                         }
                     }
@@ -152,14 +150,16 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 }
 
                 FilterResults filterResults = new FilterResults();
-                filterResults.count = itemsListFiltered.size();
                 filterResults.values = itemsListFiltered;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                setItems((ArrayList<DIALOG>) filterResults.values);
+                itemsListFiltered = (ArrayList<DIALOG>) filterResults.values;
+ 
+                // refresh the list with filtered data
+                notifyDataSetChanged();
             }
         };
     }
