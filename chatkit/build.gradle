@@ -29,8 +29,8 @@ android {
 }*/
 
 ext {
-    supportVersion = '1.0.0-rc02'
-    materialVersion = '1.0.0-rc01'
+    supportVersion = '1.0.0'
+    materialVersion = '1.0.0'
     flexboxVersion = '1.1.0-beta1'
 }
 

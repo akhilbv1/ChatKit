@@ -19,8 +19,6 @@ package com.stfalcon.chatkit.messages;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import androidx.annotation.LayoutRes;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.util.SparseArray;
@@ -40,6 +38,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Adapter for {@link MessagesList}.
@@ -94,14 +96,15 @@ public class MessagesListAdapter<MESSAGE extends IMessage>
         this.items = new ArrayList<>();
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return holders.getHolder(parent, viewType, messagesListStyle);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Wrapper wrapper = items.get(position);
         holders.bind(holder, wrapper.item, wrapper.isSelected, imageLoader,
                 getMessageClickListener(wrapper),
