@@ -16,7 +16,6 @@
 
 package com.stfalcon.chatkit.commons;
 
-import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import com.stfalcon.chatkit.commons.models.IUser;
 import com.stfalcon.chatkit.commons.models.IDialog;
