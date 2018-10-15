@@ -18,9 +18,6 @@ package com.stfalcon.chatkit.dialogs;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +27,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.stfalcon.chatkit.R;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.ViewHolder;
@@ -44,6 +40,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
