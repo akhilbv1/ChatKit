@@ -387,6 +387,9 @@ public class DialogsListAdapter<DIALOG extends IDialog>
                 if (o1 == null || o2 == null) {
                     return 0;
                 }
+                if (o1.getLastMessage() == null || o2.getLastMessage() == null) {
+                    return 0;
+                }
                 if (o1.getLastMessage().getCreatedAt().after(o2.getLastMessage().getCreatedAt())) {
                     return -1;
                 } else if (o1.getLastMessage().getCreatedAt().before(o2.getLastMessage().getCreatedAt())) {
