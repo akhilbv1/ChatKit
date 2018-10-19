@@ -384,8 +384,11 @@ public class DialogsListAdapter<DIALOG extends IDialog>
         Collections.sort(items, new Comparator<DIALOG>() {
             @Override
             public int compare(DIALOG o1, DIALOG o2) {
-                if (o1 == null || o2 == null) {
-                    return 0;
+                if (o1 == null) {
+                    return -1;
+                }
+                if (o2 == null) {
+                    return 1;
                 }
                 if (o1.getLastMessage() == null || o2.getLastMessage() == null) {
                     return 0;
